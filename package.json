@@ -1,0 +1,31 @@
+{
+  "name": "recipes-worker",
+  "version": "1.0.0",
+  "description": "Worker service for our Recipes.",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ourfintech/recipes-worker.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ourfintech/recipes-worker/issues"
+  },
+  "homepage": "https://github.com/ourfintech/recipes-worker#readme",
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "eslint-config-standard": "^15.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.2",
+    "prettier": "2.1.2"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.777.0"
+  }
+}
