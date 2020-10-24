@@ -10,7 +10,7 @@ exports.handler = async (event) => {
 
     console.log('Currently running the task', taskName, 'for user', email)
 
-    fetch('htps://api.ourfin.tech/integrations/tbank/transaction_history', {
+    fetch('https://api.ourfin.tech/integrations/tbank/transaction_history', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -22,7 +22,7 @@ exports.handler = async (event) => {
         console.log('transaction_history', json)
       })
 
-    fetch('htps://api.ourfin.tech/integrations/tbank/credit_transfer', {
+    fetch('https://api.ourfin.tech/integrations/tbank/credit_transfer', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
