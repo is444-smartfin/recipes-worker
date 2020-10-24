@@ -26,6 +26,7 @@
     "prettier": "2.1.2"
   },
   "dependencies": {
-    "aws-sdk": "^2.777.0"
+    "aws-sdk": "^2.777.0",
+    "node-fetch": "^2.6.1"
   }
 }

@@ -1,14 +1,45 @@
-const AWS = require('aws-sdk')
-AWS.config.update({ region: 'ap-southeast-1' })
+const fetch = require('node-fetch')
 
-// Create client outside of handler to reuse
-const dynamodbstreams = new AWS.DynamoDBStreams()
+exports.handler = async (event) => {
+  const eventName = event.Records[0].eventName
+  const dynamodbRecord = event.Records[0].dynamodb
+  console.log('event', event.Records[0])
+  if (eventName === 'REMOVE') {
+    const email = dynamodbRecord.OldImage.email.S
+    const taskName = dynamodbRecord.OldImage.task_name.S
 
-var params = {
-  StreamArn: 'arn:aws:dynamodb:ap-southeast-1:709602025381:table/recipes/stream/2020-10-23T16:35:51.358'
+    console.log('Currently running the task', taskName, 'for user', email)
+
+    fetch('htps://api.ourfin.tech/integrations/tbank/transaction_history', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log('transaction_history', json)
+      })
+
+    fetch('htps://api.ourfin.tech/integrations/tbank/credit_transfer', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log('credit_transfer', json)
+      })
+  } else {
+    console.log('Event is ' + eventName + ', Skipping execution')
+  }
+
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify('{"status": 200, "message": "success"')
+  }
+  return response
 }
-
-dynamodbstreams.describeStream(params, function (err, data) {
-  if (err) console.log(err, err.stack) // an error occurred
-  else console.log(data) // successful response
-})
