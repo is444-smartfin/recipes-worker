@@ -24,6 +24,10 @@ provider:
   name: aws
   runtime: nodejs12.x
 
+  memorySize: 512
+  timeout: 30
+  logRetentionInDays: 7
+
   # you can overwrite defaults here
   #  stage: dev
   region: ap-southeast-1
