@@ -7,8 +7,7 @@ exports.handler = async (event, context) => {
   console.log('event', eventRecord)
 
   // If userIdentity prop exists in event.Records[0], means it's a System Delete (based off TTL attribute)
-  // eventually, we change it to 'userIdentity' in eventRecord && eventName === 'REMOVE'
-  if (eventName === 'REMOVE') {
+  if ('userIdentity' in eventRecord && eventName === 'REMOVE') {
     // We immediately process it
     const email = dynamodbRecord.OldImage.email.S
     const taskName = dynamodbRecord.OldImage.task_name.S
@@ -23,7 +22,7 @@ exports.handler = async (event, context) => {
       payload
     })
     console.log(data)
-    const resp = await post('https://giant-shrimp-43.loca.lt/integrations/tbank/recipe_salary_transfer', {
+    const resp = await post('https://api.ourfin.tech/integrations/tbank/recipe_salary_transfer', {
       'Content-Type': 'application/json'
     }, data)
 
