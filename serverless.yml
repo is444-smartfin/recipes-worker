@@ -59,10 +59,11 @@ provider:
 
 functions:
   tbank-salary-transfer:
-    handler: app.handler
+    handler: app.tbank_salary_transfer
     events:
       - stream: arn:aws:dynamodb:ap-southeast-1:709602025381:table/scheduled_tasks/stream/2020-11-10T09:49:49.637
     provisionedConcurrency: 5
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
