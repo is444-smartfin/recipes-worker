@@ -25,8 +25,27 @@ exports.tbank_salary_transfer = async (event, context) => {
       })
       console.log(data)
       const resp = await post(
-        'https://jiajian-602166a7.localhost.run/integrations/tbank/recipe_salary_transfer',
-        // 'https://api.ourfin.tech/integrations/tbank/recipe_salary_transfer',
+        // 'https://jiajian-602166a7.localhost.run/integrations/tbank/recipe_salary_transfer',
+        'https://api.ourfin.tech/integrations/tbank/recipe_salary_transfer',
+        {
+          'Content-Type': 'application/json'
+        },
+        data
+      )
+      console.log(resp)
+    }
+
+    if (taskName === 'smartfin.aggregated_email') {
+      const apiKey = 'randomKey'
+      const payload = dynamodbRecord.OldImage
+      const data = JSON.stringify({
+        apiKey,
+        eventId,
+        payload
+      })
+      console.log(data)
+      const resp = await post(
+        'https://api.ourfin.tech/integrations/smartfin/aggregated_email',
         {
           'Content-Type': 'application/json'
         },
