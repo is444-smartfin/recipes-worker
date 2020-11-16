@@ -67,7 +67,7 @@ exports.tbank_salary_transfer = async (event, context) => {
   const response = {
     statusCode: 200,
     body: JSON.stringify(
-      '{"status": 200, "message": "Lambda task has been triggered."'
+      '{"status": 200, "message": "Lambda task has been triggered."}'
     )
   }
   return response
@@ -119,7 +119,7 @@ exports.smartfin_aggregated_email = async (event, context) => {
   const response = {
     statusCode: 200,
     body: JSON.stringify(
-      '{"status": 200, "message": "Lambda task has been triggered."'
+      '{"status": 200, "message": "Lambda task has been triggered."}'
     )
   }
   return response
